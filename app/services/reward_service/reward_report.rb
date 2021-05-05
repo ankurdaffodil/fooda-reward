@@ -1,6 +1,6 @@
 module RewardService
   class RewardReport
-    def report
+    def self.call
       h = {}
       points_total = User.eager_load(:rewards).group("users.id").sum(:points)
       points_avg = User.eager_load(:rewards).group("users.id").average(:points)
