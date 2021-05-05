@@ -1,23 +1,22 @@
 module RewardService
   class RewardGenerate
     def self.call(order_amount, timestamp)
-
-      datetime = DateTime.parse(timestamp).utc
+      datetime = DateTime.parse(timestamp)
 
       case true
-      when datetime >= DateTime.now.utc.beginning_of_day.change(:hour => 12) && 
-           datetime <= DateTime.now.utc.beginning_of_day.change(:hour => 13) 
+      when datetime >= datetime.change(:hour => 12) && 
+           datetime <= datetime.change(:hour => 13) 
         (order_amount/3).to_i
-      when (datetime >= DateTime.now.utc.beginning_of_day.change(:hour => 11) && 
-        datetime <= DateTime.now.utc.beginning_of_day.change(:hour => 12)) || (
-          (datetime >= DateTime.now.utc.beginning_of_day.change(:hour => 13) && 
-          datetime <= DateTime.now.utc.beginning_of_day.change(:hour => 14))
+      when (datetime >= datetime.change(:hour => 11) && 
+        datetime <= datetime.change(:hour => 12)) || (
+          (datetime >= datetime.change(:hour => 13) && 
+          datetime <= datetime.change(:hour => 14))
         ) 
         (order_amount/2).to_i
-      when (datetime >= DateTime.now.utc.beginning_of_day.change(:hour => 10) && 
-        datetime <= DateTime.now.utc.beginning_of_day.change(:hour => 11)) || (
-          (datetime >= DateTime.now.utc.beginning_of_day.change(:hour => 14) && 
-          datetime <= DateTime.now.utc.beginning_of_day.change(:hour => 15))
+      when (datetime >= datetime.change(:hour => 10) && 
+        datetime <= datetime.change(:hour => 11)) || (
+          (datetime >= datetime.change(:hour => 14) && 
+          datetime <= datetime.change(:hour => 15))
         ) 
         order_amount.to_i
       else 
