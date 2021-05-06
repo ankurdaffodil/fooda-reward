@@ -1,4 +1,9 @@
+# class used to simulate the inputs and outputs
 class Event
+
+  # We need to improve code if huge payload come as inputs
+  # either consume as stream 
+  # or we can divide events array into small chunks and then process by multiple instance of service
 
   EVENTS = {
     "events": [
@@ -54,5 +59,7 @@ class Event
         RewardService::RewardAllocation.call(user.id, event[:amount], event[:timestamp]) if user.present?
       end
     end
+    # outputs
+    RewardService::RewardReport.call
   end
 end

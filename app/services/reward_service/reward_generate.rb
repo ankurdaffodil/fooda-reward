@@ -1,5 +1,8 @@
+# Generation of reward points on basis of order amount and timestamp
 module RewardService
   class RewardGenerate
+
+    # return points
     def self.call(order_amount, timestamp)
       datetime = DateTime.parse(timestamp)
 
